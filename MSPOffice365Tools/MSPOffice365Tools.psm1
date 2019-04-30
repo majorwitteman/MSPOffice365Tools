@@ -15,4 +15,6 @@ Foreach($import in @($Public + $Private))
     }
 }
 
+$ExchangeSessionNamePreference = "MSExchange"
+
 Export-ModuleMember -Function $Public.Basename

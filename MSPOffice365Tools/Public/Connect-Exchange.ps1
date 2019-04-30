@@ -1,5 +1,3 @@
-$ExchangeSessionNamePreference = "MSExchange"
-
 function Connect-Exchange
 {
 <#
@@ -33,6 +31,6 @@ For Exchange Online, you can use delegated adminstration and provide a -Domain t
     }
 
     $ExchangeSession = New-PSSession -Name $SessionName -ConfigurationName Microsoft.Exchange -ConnectionUri $ConnectionURI -AllowRedirection -Authentication $Authentication -Credential $Credential
-    Import-Module -ModuleInfo (Import-PSSession -Session $ExchangeSession -DisableNameChecking -AllowClobber)
+    Import-Module -ModuleInfo (Import-PSSession -Session $ExchangeSession -DisableNameChecking -AllowClobber) -Global
 
 }
