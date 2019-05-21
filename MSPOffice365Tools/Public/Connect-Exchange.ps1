@@ -1,4 +1,4 @@
-function Connect-RWExchange {
+function Connect-Exchange {
     <#
 .SYNOPSIS
 Connect to a remote Exchange server. Specify -ExchangeOnline to connect Office 365 or specify -ConnectionURI with the https://mail.domain.com/powershell link to the server you want to connect to. You can provide a credential with -Credential or let the function prompt for a credential. You can also specify an alternate session name.

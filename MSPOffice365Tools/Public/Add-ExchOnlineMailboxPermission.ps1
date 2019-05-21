@@ -1,4 +1,4 @@
-function Add-RWExchOnlineMailboxPermission {
+function Add-ExchOnlineMailboxPermission {
     <#
 .SYNOPSIS
 Must specify FullAccess, SendAs, or both.

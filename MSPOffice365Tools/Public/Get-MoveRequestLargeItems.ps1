@@ -1,4 +1,4 @@
-function Get-RWMoveRequestLargeItems {
+function Get-MoveRequestLargeItems {
     <#
 .Synopsis
    Takes MoveRequestStatistics object with -IncludeReport specified. Accepts InputObject from pipeline.

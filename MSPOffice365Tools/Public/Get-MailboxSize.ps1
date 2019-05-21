@@ -1,4 +1,4 @@
-function Get-RWMailboxSize {
+function Get-MailboxSize {
     <#
 .SYNOPSIS
 Gets all mailboxes and the mailbox sizes. Fixes the built in TotalItemSize property by adding a TotalSizeInBytes field.

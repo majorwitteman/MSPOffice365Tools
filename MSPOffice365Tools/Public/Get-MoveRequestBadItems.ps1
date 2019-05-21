@@ -1,4 +1,4 @@
-function Get-RWMoveRequestBadItems {
+function Get-MoveRequestBadItems {
     <#
 .Synopsis
    Takes MoveRequestStatistics object with -IncludeReport specified. Accepts InputObject from pipeline.

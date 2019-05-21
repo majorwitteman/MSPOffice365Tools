@@ -1,9 +1,9 @@
-function Set-RWMsolUserPassword {
+function Set-MsolUserPassword {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory=$true,
-            ValueFromPipeline=$true,
-            ValueFromPipelineByPropertyName=$true)]
+        [Parameter(Mandatory = $true,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true)]
         [string[]]$UserPrincipalName,
         [boolean]$RevokeToken = $true,
         [boolean]$ForceChangePassword = $true
@@ -14,7 +14,7 @@ function Set-RWMsolUserPassword {
     }
     
     process {
-        foreach($user in $UserPrincipalName) {
+        foreach ($user in $UserPrincipalName) {
             try {
                 Get-MsolUser -UserPrincipalName $user -ErrorAction Stop -OutVariable msolUser | Out-Null
             }
@@ -32,7 +32,7 @@ function Set-RWMsolUserPassword {
             }
             $obj
 
-            if($RevokeToken) {
+            if ($RevokeToken) {
                 Write-Verbose -Message "Initiating user log out. User: $user"
                 Revoke-AzureADUserAllRefreshToken -ObjectId $msolUser.ObjectId
             }

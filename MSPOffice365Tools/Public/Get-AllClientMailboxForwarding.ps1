@@ -1,8 +1,6 @@
-function Get-RWAllClientMailboxForwarding {
+function Get-AllClientMailboxForwarding {
     [cmdletbinding()]
     param()
-    $credential = Get-Credential -Message "Enter your Office 365 credentials (delegated admin)"
-    Connect-MsolService -Credential $credential
     $contracts = Get-MsolPartnerContract
     $object = @()
     foreach ($contract in $contracts) {

@@ -1,4 +1,4 @@
-function Get-RWMsolUserLicense {
+function Get-MsolUserLicense {
     <#
 .Synopsis
    Takes Microsoft.Online.Administration.User object and provides separated license info

@@ -1,4 +1,4 @@
-function Get-RWMailboxFowarding {
+function Get-MailboxFowarding {
     <#
 .SYNOPSIS
 Gets all mailboxes and their forwarding information.
