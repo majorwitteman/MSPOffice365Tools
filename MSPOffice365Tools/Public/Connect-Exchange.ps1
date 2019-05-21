@@ -5,6 +5,7 @@ Connect to a remote Exchange server. Specify -ExchangeOnline to connect Office 3
 
 For Exchange Online, you can use delegated adminstration and provide a -Domain to connect to any tenant using your own credentials.
 #>
+    [cmdletbinding(DefaultParameterSetName = "Exchange")]
     param (
         [Parameter(ParameterSetName = "Exchange")][Alias("Online")][switch]$ExchangeOnline,
         [Parameter(ParameterSetName = "Exchange")]

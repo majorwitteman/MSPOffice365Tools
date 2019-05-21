@@ -5,9 +5,9 @@ function Get-MoveRequestLargeItems {
 .DESCRIPTION
    Long description
 .EXAMPLE
-   Get-MoveRequestStatistics -IncludeReport | Get-RWMoveRequestLargeItems
+   Get-MoveRequestStatistics -IncludeReport | Get-MoveRequestLargeItems
 .EXAMPLE
-   Import-Clixml .\RequestStatsReport.xml | Get-RWMoveRequestLargeItems
+   Import-Clixml .\RequestStatsReport.xml | Get-MoveRequestLargeItems
 #>
     [CmdletBinding()]
     [Alias()]

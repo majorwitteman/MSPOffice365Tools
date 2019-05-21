@@ -5,9 +5,9 @@ function Get-MoveRequestBadItems {
 .DESCRIPTION
    Long description
 .EXAMPLE
-   Get-MoveRequestStatistics -IncludeReport | Get-RWMoveRequestBadItems
+   Get-MoveRequestStatistics -IncludeReport | Get-MoveRequestBadItems
 .EXAMPLE
-   Import-Clixml .\RequestStatsReport.xml | Get-RWMoveRequestBadItems
+   Import-Clixml .\RequestStatsReport.xml | Get-MoveRequestBadItems
 #>
     [CmdletBinding()]
     [Alias()]

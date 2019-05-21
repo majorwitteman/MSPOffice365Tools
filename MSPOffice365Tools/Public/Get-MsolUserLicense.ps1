@@ -5,10 +5,10 @@ function Get-MsolUserLicense {
 .DESCRIPTION
    Long description
 .EXAMPLE
-   Get-MsolUser | Get-RWMsolUserLicense
+   Get-MsolUser | Get-MsolUserLicense
 .EXAMPLE
    $users = Get-MsolUser | Where-Object {$_.IsLicensed -eq $True}
-   $users | Get-RWMsolUserLicense
+   $users | Get-MsolUserLicense
    $users | Export-CSV C:\Temp\Users.csv
 #>
     [CmdletBinding()]
