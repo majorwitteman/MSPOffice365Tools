@@ -7,7 +7,7 @@ For Exchange Online, you can use delegated adminstration and provide a -Domain t
 #>
     [cmdletbinding(DefaultParameterSetName = "Exchange")]
     param (
-        [Parameter(ParameterSetName = "Exchange")][Alias("Online")][switch]$ExchangeOnline,
+        [Parameter(ParameterSetName = "Exchange")][Alias("Online")][boolean]$ExchangeOnline = $true,
         [Parameter(ParameterSetName = "Exchange")]
         [Parameter(ParameterSetName = "SecurityAndCompliance")][string]$Domain,
         [Parameter(ParameterSetName = "SecurityAndCompliance")][Alias("SACC", "SAC", "SCC")][switch]$SecurityAndComplianceCenter,
@@ -28,7 +28,7 @@ For Exchange Online, you can use delegated adminstration and provide a -Domain t
         }
     }
 
-    if ($ExchangeOnline.IsPresent) {
+    if ($ExchangeOnline) {
         if ($Domain) {
             $ConnectionURI = "https://ps.outlook.com/powershell-liveid?DelegatedOrg=$Domain"
         }

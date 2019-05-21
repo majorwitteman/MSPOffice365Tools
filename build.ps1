@@ -4,4 +4,16 @@ $functionsToExport = $private.BaseName
 
 $current = Import-LocalizedData -BaseDirectory .\MSPOffice365Tools -FileName MSPOffice365Tools.psd1
 
-New-ModuleManifest -Path .\MSPOffice365Tools\MSPOffice365Tools.psd1 -FunctionsToExport $functionsToExport -Author "Rob Witteman" -RootModule '.\MSPOffice365Tools.psm1' -Guid $current.Guid -DefaultCommandPrefix 'RW'
+$description = "Collection of Office 365 PowerShell tools. Primarily aimed at MSP usage."
+
+$params = @{
+    Path                    = '.\MSPOffice365Tools\MSPOffice365Tools.psd1'
+    FunctionsToExport       = $functionsToExport
+    Author                  = "Rob Witteman"
+    Description             = $description
+    RootModule              = ".\MSPOffice365Tools.psm1"
+    Guid                    = $current.Guid
+    DefaultCommandPrefix    = "RW"
+}
+
+Update-ModuleManifest @params
