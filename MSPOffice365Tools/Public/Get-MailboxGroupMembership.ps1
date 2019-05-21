@@ -1,4 +1,4 @@
-function Get-MailboxGroupMembership {
+function Get-RWMailboxGroupMembership {
     [CmdletBinding()]
     [Alias()]
     [OutputType([int])]
