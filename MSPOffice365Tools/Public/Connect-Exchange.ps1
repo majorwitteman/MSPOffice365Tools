@@ -5,10 +5,9 @@ Connect to a remote Exchange server. Specify -ExchangeOnline to connect Office 3
 
 For Exchange Online, you can use delegated adminstration and provide a -Domain to connect to any tenant using your own credentials.
 #>
-    [cmdletbinding(DefaultParameterSetName = "Exchange")]
+    [cmdletbinding(DefaultParameterSetName = "ExchangeOnline")]
     param (
-        [Parameter(ParameterSetName = "Exchange")][Alias("Online")][boolean]$ExchangeOnline = $true,
-        [Parameter(ParameterSetName = "Exchange")]
+        [Parameter(ParameterSetName = "ExchangeOnline")]
         [Parameter(ParameterSetName = "SecurityAndCompliance")][string]$Domain,
         [Parameter(ParameterSetName = "SecurityAndCompliance")][Alias("SACC", "SAC", "SCC")][switch]$SecurityAndComplianceCenter,
         [Parameter(ParameterSetName = "OnPrem")][string]$ConnectionURI,
@@ -28,7 +27,7 @@ For Exchange Online, you can use delegated adminstration and provide a -Domain t
         }
     }
 
-    if ($ExchangeOnline) {
+    if($PSCmdlet.ParameterSetName -eq 'ExchangeOnline') {
         if ($Domain) {
             $ConnectionURI = "https://ps.outlook.com/powershell-liveid?DelegatedOrg=$Domain"
         }
@@ -46,5 +45,4 @@ For Exchange Online, you can use delegated adminstration and provide a -Domain t
     if ($ExchangeSession) {
         Import-Module -ModuleInfo (Import-PSSession -Session $ExchangeSession -DisableNameChecking -AllowClobber) -Global
     }
-
 }
