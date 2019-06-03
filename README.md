@@ -2,6 +2,8 @@
 
 ## About
 
+My first leap into source control and open source project work.
+
 A small selection of script functions that I have created over a few years. These scripts focus on various Office 365 and Exchange Online actions that I commonly need to perform.
 
 ## To-Do
