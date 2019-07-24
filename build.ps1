@@ -8,7 +8,7 @@ try {
     $ModuleFile = '.\MSPOffice365Tools\MSPOffice365Tools.psm1'
 
     #region Read the module manifest
-    $manifestFilePath = "$env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psd1"
+    $manifestFilePath = "$env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools\MSPOffice365Tools.psd1"
     $manifestContent = Get-Content -Path $manifestFilePath -Raw
     #endregion
 
@@ -18,7 +18,6 @@ try {
     ## Use the AppVeyor build version as the module version
     $replacements = @{
         "ModuleVersion = '.*'" = "ModuleVersion = '$env:APPVEYOR_BUILD_VERSION'"
-        "FunctionsToExport = '.*'" = "FunctionsToExport = @($functions)"
     }
 
     $replacements.GetEnumerator() | foreach {
@@ -26,6 +25,7 @@ try {
     }
 
     $manifestContent | Set-Content -Path $manifestFilePath
+    Update-ModuleManifest -Path $manifestFilePath -FunctionsToExport $functions
     #endregion
 
     $content = foreach($import in @($Public + $Private))
