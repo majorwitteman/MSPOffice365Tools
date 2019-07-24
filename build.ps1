@@ -43,6 +43,7 @@ $pwd
     Move-Item -Path $ModuleFile -Destination $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psm1
     Move-Item -Path $manifestFilePath -Destination $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psd1
     Get-ChildItem -Path .\MSPOffice365Tools\private | Move-Item -Destination $env:APPVEYOR_BUILD_FOLDER\
+    Remove-Item $env:APPVEYOR_BUILD_FOLDER\.git -Recurse -Force
 
 
 } catch {
