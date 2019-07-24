@@ -1,5 +1,5 @@
 ## Ensure all errors are terminating errors to catch
-#$ErrorActionPreference = 'Stop'
+$ErrorActionPreference = 'Stop'
 
 try {
 
@@ -20,6 +20,8 @@ try {
         'MSPOffice365Tools\\private'
         'MSPOffice365Tools\\public'
     )
+
+    gci -recurse
     $exclude = $excludeFromPublish -join '|'
     Get-ChildItem -Path $env:APPVEYOR_BUILD_FOLDER -Recurse | Where-Object { $_.FullName -match $exclude } | Remove-Item -Force -Recurse
 
