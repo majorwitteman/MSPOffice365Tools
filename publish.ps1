@@ -1,5 +1,5 @@
 ## Ensure all errors are terminating errors to catch
-$ErrorActionPreference = 'Stop'
+#$ErrorActionPreference = 'Stop'
 
 try {
 
