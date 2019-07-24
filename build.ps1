@@ -38,7 +38,6 @@ $365SkuTable = Import-LocalizedData -BaseDirectory $PSScriptRoot -FileName SkuTa
 $ExchangeSessionNamePreference = "MSExchange"
 '@
     $content += $additonal
-$pwd
     Set-Content -Path $ModuleFile -Value $content
     Move-Item -Path $ModuleFile -Destination $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psm1
     Move-Item -Path $manifestFilePath -Destination $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psd1

@@ -21,11 +21,9 @@ try {
         'MSPOffice365Tools\\public'
     )
 
-    gci -recurse
     $exclude = $excludeFromPublish -join '|'
     Get-ChildItem -Path $env:APPVEYOR_BUILD_FOLDER -Recurse | Where-Object { $_.FullName -match $exclude } | Remove-Item -Force -Recurse
 
-    gci -recurse
     ## Publish module to PowerShell Gallery
     $publishParams = @{
         Path        = $env:APPVEYOR_BUILD_FOLDER

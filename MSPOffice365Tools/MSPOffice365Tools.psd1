@@ -106,7 +106,7 @@ PrivateData = @{
         # LicenseUri = ''
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/majorwitteman/MSPOffice365Tools'
 
         # A URL to an icon representing this module.
         # IconUri = ''
