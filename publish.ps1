@@ -17,10 +17,11 @@ try {
         'MSPOffice365Tools\\\.nuspec'
         'MSPOffice365Tools\\README\.md'
         'MSPOffice365Tools\\TestResults\.xml'
-
+        'MSPOffice365Tools\\private'
+        'MSPOffice365Tools\\public'
     )
     $exclude = $excludeFromPublish -join '|'
-    Get-ChildItem -Path $env:APPVEYOR_BUILD_FOLDER -Recurse | where { $_.FullName -match $exclude } | Remove-Item -Force -Recurse
+    Get-ChildItem -Path $env:APPVEYOR_BUILD_FOLDER -Recurse | Where-Object { $_.FullName -match $exclude } | Remove-Item -Force -Recurse
 
     ## Publish module to PowerShell Gallery
     $publishParams = @{
