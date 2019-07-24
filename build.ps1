@@ -1,19 +1,28 @@
-$private = Get-ChildItem -Path $PSScriptRoot\MSPOffice365Tools\public
+## Ensure all errors are terminating errors to catch
+$ErrorActionPreference = 'Stop'
 
-$functionsToExport = $private.BaseName
+try {
+	
+    #region Read the module manifest
+    $manifestFilePath = "$env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psd1"
+    $manifestContent = Get-Content -Path $manifestFilePath -Raw
+    #endregion
 
-$current = Import-LocalizedData -BaseDirectory .\MSPOffice365Tools -FileName MSPOffice365Tools.psd1
+    #region Update the module version based on the build version and limit exported functions
+    ## Use the AppVeyor build version as the module version
+    $replacements = @{
+        "ModuleVersion = '.*'" = "ModuleVersion = '$env:APPVEYOR_BUILD_VERSION'"
+    }
 
-$description = "Collection of Office 365 PowerShell tools. Primarily aimed at MSP usage."
+    $replacements.GetEnumerator() | foreach {
+        $manifestContent = $manifestContent -replace $_.Key, $_.Value
+    }
 
-$params = @{
-    Path                    = '.\MSPOffice365Tools\MSPOffice365Tools.psd1'
-    FunctionsToExport       = $functionsToExport
-    Author                  = "Rob Witteman"
-    Description             = $description
-    RootModule              = ".\MSPOffice365Tools.psm1"
-    Guid                    = $current.Guid
-    DefaultCommandPrefix    = "RW"
+    $manifestContent | Set-Content -Path $manifestFilePath
+    #endregion
+
+} catch {
+    Write-Error -Message $_.Exception.Message
+    ## Ensure the build knows to fail
+    $host.SetShouldExit($LastExitCode)
 }
-
-Update-ModuleManifest @params
