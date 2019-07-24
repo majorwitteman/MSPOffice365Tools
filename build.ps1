@@ -40,9 +40,9 @@ $ExchangeSessionNamePreference = "MSExchange"
     $content += $additonal
 $pwd
     Set-Content -Path $ModuleFile -Value $content
-    Move-Item -Path $ModuleFile -Destination ..\MSPOffice365Tools.psm1
-    Move-Item -Path $manifestFilePath -Destination ..\MSPOffice365Tools.psd1
-    Get-ChildItem -Path .\MSPOffice365Tools\private | Move-Item -Destination ..\..\
+    Move-Item -Path $ModuleFile -Destination $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psm1
+    Move-Item -Path $manifestFilePath -Destination $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psd1
+    Get-ChildItem -Path .\MSPOffice365Tools\private | Move-Item -Destination $env:APPVEYOR_BUILD_FOLDER\
 
 
 } catch {
