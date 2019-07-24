@@ -1,6 +1,9 @@
 ## Ensure all errors are terminating errors to catch
 $ErrorActionPreference = 'Stop'
 
+
+gci -recurse
+<#
 try {
 
     ## Don't upload the build scripts and other artifacts when uploading to the PowerShell Gallery
@@ -34,3 +37,4 @@ try {
     Write-Error -Message $_.Exception.Message
     $host.SetShouldExit($LastExitCode)
 }
+#>
