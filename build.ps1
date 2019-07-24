@@ -34,12 +34,15 @@ try {
     }
 
     $additonal = @'
-$365SkuTable = Import-LocalizedData -BaseDirectory $PSScriptRoot\private -FileName SkuTable.psd1
+$365SkuTable = Import-LocalizedData -BaseDirectory $PSScriptRoot -FileName SkuTable.psd1
 $ExchangeSessionNamePreference = "MSExchange"
 '@
     $content += $additonal
 
     Set-Content -Path $ModuleFile -Value $content
+    Move-Item -Path $ModuleFile -Destination ..\MSPOffice365Tools.psm1
+    Move-Item -Path $manifestFilePath -Destination ..\MSPOffice365Tools.psd1
+    Get-ChildItem -Path .\MSPOffice365Tools\private | Move-Item -Destination ..\..\
 
 
 } catch {
