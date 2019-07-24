@@ -20,7 +20,7 @@ try {
         "ModuleVersion = '.*'" = "ModuleVersion = '$env:APPVEYOR_BUILD_VERSION'"
     }
 
-    $replacements.GetEnumerator() | foreach {
+    $replacements.GetEnumerator() | Foreach-Object {
         $manifestContent = $manifestContent -replace $_.Key, $_.Value
     }
 
