@@ -5,7 +5,8 @@ try {
 
     $Public  = @( Get-ChildItem -Path $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools\public\ )
     $Private = @( Get-ChildItem -Path $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools\private\ )
-    $fileList = @( $Public.FullName, $Private.FullName)
+    $fileList = $public.foreach({$_.FullName})
+    $fileList += $private.foreach({$_.FullName})
     $ModuleFile = '.\MSPOffice365Tools\MSPOffice365Tools.psm1'
 
     #region Read the module manifest
