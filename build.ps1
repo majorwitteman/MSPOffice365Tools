@@ -3,15 +3,8 @@ $ErrorActionPreference = 'Stop'
 
 try {
 
-    Move-Item -Path $ModuleFile -Destination $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psm1
-    Move-Item -Path $manifestFilePath -Destination $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psd1
-    Get-ChildItem -Path .\MSPOffice365Tools\private | Move-Item -Destination $env:APPVEYOR_BUILD_FOLDER\private
-    Get-ChildItem -Path .\MSPOffice365Tools\public | Move-Item -Destination $env:APPVEYOR_BUILD_FOLDER\public
-    Remove-Item $env:APPVEYOR_BUILD_FOLDER\.git -Recurse -Force
-
-
-    $Public  = @( Get-ChildItem -Path $PSScriptRoot\MSPOffice365Tools\public\ )
-    $Private = @( Get-ChildItem -Path $PSScriptRoot\MSPOffice365Tools\private\ )
+    $Public  = @( Get-ChildItem -Path $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools\public\ )
+    $Private = @( Get-ChildItem -Path $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools\private\ )
     $publicFileList = $public.ForEach({
         Write-Output ".\public\$($_.Name)"
     })
@@ -38,6 +31,7 @@ try {
     }
 
     $manifestContent | Set-Content -Path $manifestFilePath
+    Set-Location -Path .\MSPOffice365Tools
     Update-ModuleManifest -Path $manifestFilePath -FunctionsToExport $functions -FileList $publicFileList,$privateFileList
     #endregion
 
@@ -47,7 +41,7 @@ try {
 #     }
 
 #     $additonal = @'
-# $365SkuTable = Import-LocalizedData -BaseDirectory $PSScriptRoot -FileName SkuTable.psd1
+# $365SkuTable = Import-LocalizedData -BaseDirectory $env:APPVEYOR_BUILD_FOLDER -FileName SkuTable.psd1
 # $ExchangeSessionNamePreference = "MSExchange"
 # '@
 #     $content += $additonal

@@ -17,8 +17,6 @@ try {
         'MSPOffice365Tools\\\.nuspec'
         'MSPOffice365Tools\\README\.md'
         'MSPOffice365Tools\\TestResults\.xml'
-        'MSPOffice365Tools\\private'
-        'MSPOffice365Tools\\public'
     )
 
     $exclude = $excludeFromPublish -join '|'
