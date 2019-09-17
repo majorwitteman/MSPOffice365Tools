@@ -33,23 +33,6 @@ try {
     Get-Content -Path $manifestFilePath -Raw
     #endregion
 
-#     $content = foreach($import in @($Public + $Private))
-#     {
-#         Get-Content -Path $import.FullName
-#     }
-
-#     $additonal = @'
-# $365SkuTable = Import-LocalizedData -BaseDirectory $env:APPVEYOR_BUILD_FOLDER -FileName SkuTable.psd1
-# $ExchangeSessionNamePreference = "MSExchange"
-# '@
-#     $content += $additonal
-#     Set-Content -Path $ModuleFile -Value $content
-#     Move-Item -Path $ModuleFile -Destination $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psm1
-#     Move-Item -Path $manifestFilePath -Destination $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psd1
-#     Get-ChildItem -Path .\MSPOffice365Tools\private | Move-Item -Destination $env:APPVEYOR_BUILD_FOLDER\
-#     Remove-Item $env:APPVEYOR_BUILD_FOLDER\.git -Recurse -Force
-
-
 } catch {
     Write-Error -Message $_.Exception.Message
     ## Ensure the build knows to fail
