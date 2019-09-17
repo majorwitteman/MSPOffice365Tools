@@ -3,8 +3,14 @@ $ErrorActionPreference = 'Stop'
 
 try {
 
-    $Public  = @( Get-ChildItem -Path $PSScriptRoot\MSPOffice365Tools\public\*.ps1 )
-    $Private = @( Get-ChildItem -Path $PSScriptRoot\MSPOffice365Tools\private\*.ps1 )
+    $Public  = @( Get-ChildItem -Path $PSScriptRoot\MSPOffice365Tools\public\ )
+    $Private = @( Get-ChildItem -Path $PSScriptRoot\MSPOffice365Tools\private\ )
+    $publicFileList = $public.ForEach({
+        Write-Output ".\public\$($_.Name)"
+    })
+    $privateFileList = $private.ForEach({
+        Write-Output ".\private\$($_.Name)"
+    })
     $ModuleFile = '.\MSPOffice365Tools\MSPOffice365Tools.psm1'
 
     #region Read the module manifest
@@ -25,24 +31,24 @@ try {
     }
 
     $manifestContent | Set-Content -Path $manifestFilePath
-    Update-ModuleManifest -Path $manifestFilePath -FunctionsToExport $functions
+    Update-ModuleManifest -Path $manifestFilePath -FunctionsToExport $functions -FileList $publicFileList,$privateFileList
     #endregion
 
-    $content = foreach($import in @($Public + $Private))
-    {
-        Get-Content -Path $import.FullName
-    }
+#     $content = foreach($import in @($Public + $Private))
+#     {
+#         Get-Content -Path $import.FullName
+#     }
 
-    $additonal = @'
-$365SkuTable = Import-LocalizedData -BaseDirectory $PSScriptRoot -FileName SkuTable.psd1
-$ExchangeSessionNamePreference = "MSExchange"
-'@
-    $content += $additonal
-    Set-Content -Path $ModuleFile -Value $content
-    Move-Item -Path $ModuleFile -Destination $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psm1
-    Move-Item -Path $manifestFilePath -Destination $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psd1
-    Get-ChildItem -Path .\MSPOffice365Tools\private | Move-Item -Destination $env:APPVEYOR_BUILD_FOLDER\
-    Remove-Item $env:APPVEYOR_BUILD_FOLDER\.git -Recurse -Force
+#     $additonal = @'
+# $365SkuTable = Import-LocalizedData -BaseDirectory $PSScriptRoot -FileName SkuTable.psd1
+# $ExchangeSessionNamePreference = "MSExchange"
+# '@
+#     $content += $additonal
+#     Set-Content -Path $ModuleFile -Value $content
+#     Move-Item -Path $ModuleFile -Destination $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psm1
+#     Move-Item -Path $manifestFilePath -Destination $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psd1
+#     Get-ChildItem -Path .\MSPOffice365Tools\private | Move-Item -Destination $env:APPVEYOR_BUILD_FOLDER\
+#     Remove-Item $env:APPVEYOR_BUILD_FOLDER\.git -Recurse -Force
 
 
 } catch {
