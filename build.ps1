@@ -5,12 +5,6 @@ try {
 
     $Public  = @( Get-ChildItem -Path $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools\public\ )
     $Private = @( Get-ChildItem -Path $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools\private\ )
-    $publicFileList = $public.ForEach({
-        Write-Output ".\public\$($_.Name)"
-    })
-    $privateFileList = $private.ForEach({
-        Write-Output ".\private\$($_.Name)"
-    })
     $ModuleFile = '.\MSPOffice365Tools\MSPOffice365Tools.psm1'
 
     #region Read the module manifest
@@ -32,7 +26,7 @@ try {
 
     $manifestContent | Set-Content -Path $manifestFilePath
     Set-Location -Path .\MSPOffice365Tools
-    Update-ModuleManifest -Path $manifestFilePath -FunctionsToExport $functions -FileList $public.FullName
+    Update-ModuleManifest -Path $manifestFilePath -FunctionsToExport $functions -FileList $public.FullName,$private.FullName
     Get-Content -Path $manifestFilePath -Raw
     Set-Location -Path ..\
     #endregion

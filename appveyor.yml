@@ -12,4 +12,4 @@ install:
 build_script:
 - ps: .\build.ps1
 after_test:
-# - ps: .\publish.ps1
+- ps: .\publish.ps1
