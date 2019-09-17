@@ -4,8 +4,6 @@ $ErrorActionPreference = 'Stop'
 try {
 
     ## Don't upload the build scripts and other artifacts when uploading to the PowerShell Gallery
-    $tempmoduleFolderPath = "$env:Temp\MSPOffice365Tools"
-    $null = mkdir $tempmoduleFolderPath
 
     ## Remove all of the files/folders to exclude out of the main folder
     $excludeFromPublish = @(
@@ -24,7 +22,7 @@ try {
 
     ## Publish module to PowerShell Gallery
     $publishParams = @{
-        Path        = $env:APPVEYOR_BUILD_FOLDER
+        Path        = "$env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools"
         NuGetApiKey = $env:nuget_apikey
     }
     Publish-PMModule @publishParams

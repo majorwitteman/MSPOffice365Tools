@@ -27,7 +27,9 @@ try {
     }
 
     $manifestContent | Set-Content -Path $manifestFilePath
+    Set-Location -Path .\MSPOffice365Tools
     Update-ModuleManifest -Path $manifestFilePath -FunctionsToExport $functions -FileList $fileList
+    Set-Location -Path ..\
     Get-Content -Path $manifestFilePath -Raw
     #endregion
 
