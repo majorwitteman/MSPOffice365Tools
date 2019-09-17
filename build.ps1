@@ -3,6 +3,13 @@ $ErrorActionPreference = 'Stop'
 
 try {
 
+    Move-Item -Path $ModuleFile -Destination $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psm1
+    Move-Item -Path $manifestFilePath -Destination $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools.psd1
+    Get-ChildItem -Path .\MSPOffice365Tools\private | Move-Item -Destination $env:APPVEYOR_BUILD_FOLDER\private
+    Get-ChildItem -Path .\MSPOffice365Tools\public | Move-Item -Destination $env:APPVEYOR_BUILD_FOLDER\public
+    Remove-Item $env:APPVEYOR_BUILD_FOLDER\.git -Recurse -Force
+
+
     $Public  = @( Get-ChildItem -Path $PSScriptRoot\MSPOffice365Tools\public\ )
     $Private = @( Get-ChildItem -Path $PSScriptRoot\MSPOffice365Tools\private\ )
     $publicFileList = $public.ForEach({
