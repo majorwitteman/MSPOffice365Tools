@@ -32,7 +32,7 @@ try {
 
     $manifestContent | Set-Content -Path $manifestFilePath
     Set-Location -Path .\MSPOffice365Tools
-    Update-ModuleManifest -Path $manifestFilePath -FunctionsToExport $functions -FileList $publicFileList,$privateFileList
+    Update-ModuleManifest -Path $manifestFilePath -FunctionsToExport $functions -FileList $public
     #endregion
 
 #     $content = foreach($import in @($Public + $Private))
