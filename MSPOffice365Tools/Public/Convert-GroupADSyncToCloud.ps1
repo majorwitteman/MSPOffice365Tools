@@ -39,8 +39,6 @@ function Convert-GroupADSyncToCloud {
                 $dgObject.Group.ModeratedBy | Get-Recipient | Select-Object -ExpandProperty PrimarySMTPAddress
             }
 
-            # $Members = $dgObject.Members | Select-Object -ExpandProperty PrimarySMTPAddress
-
             $newDGParam = @{
                 Name                               = $dgObject.Group.Name
                 ModeratedBy                        = $ModerateBy
@@ -50,7 +48,7 @@ function Convert-GroupADSyncToCloud {
                 Alias                              = $dgObject.Group.Alias
                 ManagedBy                          = $ManagedBy
                 PrimarySmtpAddress                 = $dgObject.Group.PrimarySMTPAddress
-                Members                            = ($dgObject.Members.PrimarySMTPAddress | Where-Object { $_.Length -gt 0 })
+                Members                            = ($dgObject.Member.PrimarySMTPAddress | Where-Object { $_.Length -gt 0 })
                 SendModerationNotifications        = $dgObject.Group.SendModerationNotifications
                 WhatIf                             = $WhatIf
             }
