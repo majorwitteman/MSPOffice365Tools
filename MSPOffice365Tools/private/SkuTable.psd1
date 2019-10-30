@@ -4,7 +4,7 @@
     "AAD_PREMIUM"                        = "Azure Active Directory Premium P1"
     "AAD_PREMIUM_P2"                     = "Azure Active Directory Premium P2"
     "MFA_PREMIUM"                        = "Azure Multi-Factor Authentication"
-    "RIGHTSMANAGEMENT"                   = "Azure Information Protcetion Plan 1"
+    "RIGHTSMANAGEMENT"                   = "Azure Information Protection Plan 1"
     "O365_BUSINESS_ESSENTIALS"           = "Office 365 Business Essentials"
     "O365_BUSINESS_PREMIUM"              = "Office 365 Business Premium"
     "ADALLOM_O365"                       = "Office 365 Cloud App Security"
