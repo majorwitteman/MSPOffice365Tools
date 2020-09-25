@@ -23,7 +23,7 @@ try {
     ## Publish module to PowerShell Gallery
     $publishParams = @{
         Path        = "$env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools"
-        NuGetApiKey = $env:nuget_apikey
+        NuGetApiKey = $env:psgalleryKey
     }
     Publish-PMModule @publishParams
 

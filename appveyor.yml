@@ -1,6 +1,3 @@
-environment:
-  nuget_apikey:
-    secure: Dntdq1e7oSujO0Yljz/xBP0fPf92Yy0RkAjA7RPRqFx4KMjqGzVXN5HBE9qE3esm
 version: 1.0.{build}
 branches:
   only:
