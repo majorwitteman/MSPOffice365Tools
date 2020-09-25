@@ -17,11 +17,16 @@ function Get-AzBlobMD5 {
                 $fs = [System.IO.FileStream]::new($file,[System.IO.FileMode]::Open)
             }
             catch {
-                Write-Error -Message "$((Get-Error -Newest 1).Exception.InnerException.Message)"
+                Write-Error -Message "$file : $(Get-Error -Newest 1)"
                 break
             }
-            [System.Convert]::ToBase64String($md5.ComputeHash($fs))
+            $hash = [System.Convert]::ToBase64String($md5.ComputeHash($fs))
             $fs.Close()
+
+            [pscustomobject]@{
+                File = $file
+                Hash = $hash
+            }
         }
     }
 }
