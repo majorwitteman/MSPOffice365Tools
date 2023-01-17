@@ -12,6 +12,7 @@ try {
         'MSPOffice365Tools\\publish.ps1'
         'MSPOffice365Tools\\appveyor\.yml'
         'MSPOffice365Tools\\\.git'
+        'MSPOffice365Tools\\\.github'
         'MSPOffice365Tools\\\.nuspec'
         'MSPOffice365Tools\\README\.md'
         'MSPOffice365Tools\\TestResults\.xml'
@@ -25,7 +26,8 @@ try {
         Path        = "$env:GITHUB_WORKSPACE\MSPOffice365Tools"
         NuGetApiKey = $env:psgalleryKey
     }
-    Publish-PMModule @publishParams
+    Publish-Module @publishParams
+    # Publish-PMModule @publishParams
 
 } catch {
     Write-Error -Message $_.Exception.Message
