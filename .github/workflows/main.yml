@@ -1,8 +1,9 @@
 name: Publish PowerShell Module
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+     - master
     
 jobs:
   publish-to-gallery:
