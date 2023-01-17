@@ -15,7 +15,6 @@ jobs:
           psgalleryKey: ${{ secrets.psgalleryKey}}
         shell: pwsh
         run: |
-          $PWD
-          dir 
+          ./install.ps1
           ./build.ps1
           ./publish.ps1

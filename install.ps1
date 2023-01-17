@@ -14,7 +14,7 @@ try {
     $null = Import-PackageProvider @provParams
 	
     ## Download and import the modules we're going to need later
-    $requiredModules = @('Pester', 'PSPostMan', 'PSScriptAnalyzer')
+    $requiredModules = @('PSPostMan')
     foreach ($m in $requiredModules) {
         Write-Host "Installing [$($m)] module..."
         Install-Module -Name $m -Force -Confirm:$false
