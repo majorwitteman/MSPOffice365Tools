@@ -18,11 +18,11 @@ try {
     )
 
     $exclude = $excludeFromPublish -join '|'
-    Get-ChildItem -Path $env:APPVEYOR_BUILD_FOLDER -Recurse | Where-Object { $_.FullName -match $exclude } | Remove-Item -Force -Recurse
+    Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse | Where-Object { $_.FullName -match $exclude } | Remove-Item -Force -Recurse
 
     ## Publish module to PowerShell Gallery
     $publishParams = @{
-        Path        = "$env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools"
+        Path        = "$env:GITHUB_WORKSPACE\MSPOffice365Tools"
         NuGetApiKey = $env:psgalleryKey
     }
     Publish-PMModule @publishParams

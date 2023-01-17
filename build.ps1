@@ -3,13 +3,13 @@ $ErrorActionPreference = 'Stop'
 
 try {
 
-    $Public  = @( Get-ChildItem -Path $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools\public\ )
-    $Private = @( Get-ChildItem -Path $env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools\private\ )
+    $Public  = @( Get-ChildItem -Path $env:GITHUB_WORKSPACE\MSPOffice365Tools\public\ )
+    $Private = @( Get-ChildItem -Path $env:GITHUB_WORKSPACE\MSPOffice365Tools\private\ )
     $fileList = $public.foreach({$_.FullName})
     $fileList += $private.foreach({$_.FullName})
 
     #region Read the module manifest
-    $manifestFilePath = "$env:APPVEYOR_BUILD_FOLDER\MSPOffice365Tools\MSPOffice365Tools.psd1"
+    $manifestFilePath = "$env:GITHUB_WORKSPACE\MSPOffice365Tools\MSPOffice365Tools.psd1"
     $manifestContent = Get-Content -Path $manifestFilePath -Raw
     #endregion
 
@@ -18,7 +18,7 @@ try {
     #region Update the module version based on the build version and limit exported functions
     ## Use the AppVeyor build version as the module version
     $replacements = @{
-        "ModuleVersion = '.*'" = "ModuleVersion = '$env:APPVEYOR_BUILD_VERSION'"
+        "ModuleVersion = '.*'" = "ModuleVersion = '$($env:GITHUB_RUN_NUMBER+40)'"
     }
 
     $replacements.GetEnumerator() | Foreach-Object {
