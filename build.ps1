@@ -18,7 +18,7 @@ try {
     #region Update the module version based on the build version and limit exported functions
     ## Use the AppVeyor build version as the module version
     $replacements = @{
-        "ModuleVersion = '.*'" = "ModuleVersion = '$($env:GITHUB_RUN_NUMBER+40)'"
+        "ModuleVersion = '.*'" = "ModuleVersion = '1.0.$($env:GITHUB_RUN_NUMBER+40)'"
     }
 
     $replacements.GetEnumerator() | Foreach-Object {
